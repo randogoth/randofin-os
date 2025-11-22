@@ -1,0 +1,14 @@
+[Unit]
+Description=Ensure Bluefin GRUB icon is installed when a GRUB theme exists
+ConditionPathExists=/boot/grub2/user.cfg
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/bluefin-icons/install.sh
+SuccessExitStatus=0 3
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

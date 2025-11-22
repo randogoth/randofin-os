@@ -24,21 +24,35 @@ modules:
         - waydroid
     remove:
       packages:
+        - android-tools
+        - cockpit-bridge
+        - cockpit-machines
+        - cockpit-networkmanager
+        - cockpit-ostree
+        - cockpit-podman
+        - cockpit-selinux
+        - cockpit-storaged
+        - cockpit-system
         - code
         - docker-ce
         - docker-ce-cli
         - docker-ce-rootless-extras
         - docker-compose-plugin
         - docker-model-plugin
+        - containerd
+        - moby-engine
 
-#   - type: default-flatpaks
-#     configurations:
-#       - notify: true # Send notification after install/uninstall is finished (true/false)
-#         scope: system
-#         # If no repo information is specified, Flathub will be used by default
-#         install: # system flatpaks we want all users to have and not remove
-#           - org.mozilla.firefox
-#           - org.gnome.Loupe
-#       - scope: user # Also add Flathub user repo, but no user packages
+  - type: default-flatpaks
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+          - net.waterfox.waterfox
+          - com.vscodium.codium
+          - org.telegram.desktop
+        remove: # replace default Firefox with Waterfox
+          - org.mozilla.firefox
+      - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
